@@ -96,6 +96,13 @@
   </script>
 
   <script>
+    TrackJS.track('Testing TrackJS!');
+    class ValueIncorrectError extends Error {
+      constructor(message) {
+        super(message); 
+        this.name = "ValueIncorrectError";
+      }
+    }
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
       e.preventDefault();
@@ -105,14 +112,14 @@
 
       if(isNaN(firstNum))
       {
-        console.log("error first num")
-        throw Error;
+        // console.log("error first num")
+        throw new ValueIncorrectError("error first num");
       }
 
       if(isNaN(secondNum))
       {
-        console.log("error second num")
-        throw Error;
+        // console.log("error second num")
+        throw new ValueIncorrectError("error second num");
       }
 
       let operator = document.querySelector('#operator').value;
@@ -122,9 +129,12 @@
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
 
     try {
-      b+3 ;
+      x=1;
+      y=2;
+      if (x+y < 4) {
+        throw new ValueIncorrectError("wrong x y value");
+      } ;
     } catch (error) {
-      throw Error;
       console.log(error);
       console.log("oops");
     } finally {
