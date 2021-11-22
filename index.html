@@ -87,6 +87,14 @@
     </section>
   </main>
 
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "a4df5d4594e64aecbf539c81ec48be15"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
+
   <script>
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
@@ -94,6 +102,19 @@
       let output = document.querySelector('output');
       let firstNum = document.querySelector('#first-num').value;
       let secondNum = document.querySelector('#second-num').value;
+
+      if(isNaN(firstNum))
+      {
+        console.log("error first num")
+        throw Error;
+      }
+
+      if(isNaN(secondNum))
+      {
+        console.log("error second num")
+        throw Error;
+      }
+
       let operator = document.querySelector('#operator').value;
       output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
     });
@@ -103,6 +124,7 @@
     try {
       b+3 ;
     } catch (error) {
+      throw Error;
       console.log(error);
       console.log("oops");
     } finally {
